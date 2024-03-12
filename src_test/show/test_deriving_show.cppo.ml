@@ -239,6 +239,9 @@ type with_full  = WithFull of int [@@deriving show { with_path = true  }]
 module WithFull = struct
   type t = A of int [@@deriving show ]
 end
+module type WithSig = sig
+  type t [@@deriving show { with_path = true }]
+end
 let test_paths_printer ctxt =
   assert_equal ~printer "(NoFull 1)"   (show_no_full   (NoFull 1));
   assert_equal ~printer "(Test_deriving_show.WithFull 1)" (show_with_full (WithFull 1));

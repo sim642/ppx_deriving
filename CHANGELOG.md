@@ -1,3 +1,10 @@
+Unreleased
+----------
+
+* Make show plugin backwards-compatible with arguments in signature
+  #TODO
+  (Simmo Saan)
+
 5.3.0 (12/03/2024)
 ------------------
 
