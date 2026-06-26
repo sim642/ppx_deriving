@@ -326,16 +326,7 @@ let quote ~quoter expr =
   expr
 
 let sanitize ?(module_=Lident "Ppx_deriving_runtime") ?(quoter=create_quoter ()) expr =
-  let loc = !Ast_helper.default_loc in
-  let body =
-    let attrs = [attr_warning [%expr "-A"]] in
-    let modname = { txt = module_; loc } in
-    Exp.open_ ~loc ~attrs
-      (Opn.mk ~loc ~attrs ~override:Override (Mod.ident ~loc ~attrs modname))
-      expr in
-  let sanitized = body in
-  (* ppxlib quoter uses Recursive, ppx_deriving's used Nonrecursive - silence warning *)
-  { sanitized with pexp_attributes = attr_warning [%expr "-39"] :: sanitized.pexp_attributes}
+  expr
 
 let with_quoter fn a =
   let quoter = create_quoter () in
